@@ -2,6 +2,7 @@
   "name": "create-nextup-app",
   "version": "0.0.1",
   "dependencies": {
+    "@nx/devkit": "18.0.7",
     "create-nx-workspace": "18.0.7"
   },
   "type": "commonjs",

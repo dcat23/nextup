@@ -1,0 +1,13 @@
+{
+  "name": "create-nextup-app",
+  "version": "0.0.1",
+  "dependencies": {
+    "create-nx-workspace": "18.0.7"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "bin": {
+    "create-nextup-app": "./bin/index.js"
+  }
+}

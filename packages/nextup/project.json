@@ -1,0 +1,55 @@
+{
+  "name": "nextup",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nextup/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nextup",
+        "main": "packages/nextup/src/index.ts",
+        "tsConfig": "packages/nextup/tsconfig.lib.json",
+        "assets": [
+          "packages/nextup/*.md",
+          {
+            "input": "./packages/nextup/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nextup/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nextup",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nextup",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nextup {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/nextup/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
